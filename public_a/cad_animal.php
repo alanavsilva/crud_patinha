@@ -3,11 +3,11 @@
 include 'conexao.php';
 
 $nome = $_POST['nome'];
-$animal = $_POST['animal'];
+$tipo = $_POST['tipo'];
 $raca = $_POST['raca'];
 $idade = $_POST['idade'];
 
-$sql = "INSERT INTO animais (nome, animal, raca, idade) VALUES ('$nome', '$animal', '$raca', '$idade')";
+$sql = "INSERT INTO animais (nome, tipo, raca, idade) VALUES ('$nome', '$tipo', '$raca', '$idade')";
 
 if (mysqli_query($conexao, $sql)) {
     echo "Animal cadastrado com sucesso!";
@@ -29,8 +29,8 @@ if (mysqli_query($conexao, $sql)) {
 <label for="nome">Nome:</label>
 <input type="text" name="nome" id="nome" required>
 <br>
-<label for="animal">Animal:</label>
-<input type="text" name="animal" id="animal" required>
+<label for="tipo">Qual o animal:</label>
+<input type="text" name="tipo" id="tipo" required>
 <br>
 <label for="raca">Raça:</label>
 <input type="text" name="raca" id="raca" required>

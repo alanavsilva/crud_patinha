@@ -5,16 +5,16 @@ include ('../infra/conexao.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $nome = $_POST['nome'];
 $email = $_POST['email'];
-}
 
 $sql = "INSERT INTO clientes (nome, email) VALUES ('$nome', '$email')";
 
 if (mysqli_query($conn, $sql)) {
     echo "Cliente cadastrado com sucesso!";
-} else {
-    echo "Erro ao cadastrar cliente: " . mysqli_error($conn);
-}
-
+    } else {
+        echo "Erro ao cadastrar cliente: " . mysqli_error($conn);
+        }
+        }
+        
     ?>
 
 <!DOCTYPE html>

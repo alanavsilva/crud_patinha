@@ -2,13 +2,14 @@
 
 $host = "localhost";
 $user = "root";
-$password = "root";
+$password = "";
 $database = "crud_patinha";
+$port = "3307";
 
-$conexao = mysqli ($host, $user, $password, $database);
+$conn = mysqli_connect($host , $user , $password , $database, $port);
 
-if ($conexao->connect_error) {
-    die ("Erro na conexão com o banco: " . $conexao->connect_error);
+if ($conn->connect_error) {
+    die ("Erro na conexão com o banco: " . $conn->connect_error);
 };
 
-$conexao->set_charset("utf8mb4");
+$conn->set_charset("utf8mb4");

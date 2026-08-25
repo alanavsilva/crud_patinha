@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +11,9 @@
 
     <h2>Sistema de Cadastro de Animais e Clientes</h2>
     
-    <a href="public_u/cad_animal.php">Cadastrar Animal</a>
-    <br>
     <a href="public_u/cad_cliente.php">Cadastrar Cliente</a>
+    <br>
+    <a href="public_a/cad_animal.php">Cadastrar Animal</a>
     <br>
     <a href="public_u/list_cliente.php">Lista de Clientes</a>
     <br>

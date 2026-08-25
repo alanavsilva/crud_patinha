@@ -1,18 +1,20 @@
 <?php
 
-include 'conexao.php';
+include ('../infra/conexao.php');
 
-$nome = $_POST['nome'];
-$tipo = $_POST['tipo'];
-$raca = $_POST['raca'];
-$idade = $_POST['idade'];
-
-$sql = "INSERT INTO animais (nome, tipo, raca, idade) VALUES ('$nome', '$tipo', '$raca', '$idade')";
-
-if (mysqli_query($conexao, $sql)) {
-    echo "Animal cadastrado com sucesso!";
-} else {
-    echo "Erro ao cadastrar animal: " . mysqli_error($conexao);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome = $_POST['nome'];
+    $tipo = $_POST['tipo'];
+    $raca = $_POST['raca'];
+    $idade = $_POST['idade'];
+    
+    $sql = "INSERT INTO animais (nome, tipo, raca, idade) VALUES ('$nome', '$tipo', '$raca', '$idade')";
+    
+    if (mysqli_query($conn, $sql)) {
+        echo "Animal cadastrado com sucesso!";
+        } else {
+            echo "Erro ao cadastrar animal: " . mysqli_error($conn);
+            }
 }
 
     ?>
@@ -26,6 +28,7 @@ if (mysqli_query($conexao, $sql)) {
 </head>
 <body>
     
+<form method = "POST">
 <label for="nome">Nome:</label>
 <input type="text" name="nome" id="nome" required>
 <br>
@@ -40,6 +43,7 @@ if (mysqli_query($conexao, $sql)) {
 <br>
 <button type="submit">Enviar</button>
 
+</form>
 </body>
 </html>
 

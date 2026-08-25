@@ -1,16 +1,18 @@
 <?php
 
-include 'conexao.php';
+include ('../infra/conexao.php');
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $nome = $_POST['nome'];
 $email = $_POST['email'];
+}
 
 $sql = "INSERT INTO clientes (nome, email) VALUES ('$nome', '$email')";
 
-if (mysqli_query($conexao, $sql)) {
+if (mysqli_query($conn, $sql)) {
     echo "Cliente cadastrado com sucesso!";
 } else {
-    echo "Erro ao cadastrar cliente: " . mysqli_error($conexao);
+    echo "Erro ao cadastrar cliente: " . mysqli_error($conn);
 }
 
     ?>
@@ -24,6 +26,7 @@ if (mysqli_query($conexao, $sql)) {
 </head>
 <body>
     
+<form method = "POST">
 <label for="nome">Nome:</label>
 <input type="text" name="nome" id="nome" required>
 <br>
@@ -31,7 +34,7 @@ if (mysqli_query($conexao, $sql)) {
 <input type="email" name="email" id="email" required>
 <br>
 <button type="submit">Enviar</button>
-
+</form>
 </body>
 </html>
 

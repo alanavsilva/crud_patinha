@@ -26,9 +26,11 @@ if (mysqli_query($conexao, $sql)) {
     
 <label for="nome">Nome:</label>
 <input type="text" name="nome" id="nome" required>
-
+<br>
 <label for="email">Email:</label>
 <input type="email" name="email" id="email" required>
+<br>
+<button type="submit">Enviar</button>
 
 </body>
 </html>

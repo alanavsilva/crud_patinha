@@ -6,13 +6,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $nome = $_POST['nome'];
 $email = $_POST['email'];
 
-$sql = "INSERT INTO clientes (nome, email) VALUES ('$nome', '$email')";
+$sql = "INSERT INTO clientes (nome, email) VALUES (?, ?)";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "ss", $nome, $email);
 
-if (mysqli_query($conn, $sql)) {
+if (mysqli_stmt_execute($stmt)) {
     echo "Cliente cadastrado com sucesso!";
     } else {
         echo "Erro ao cadastrar cliente: " . mysqli_error($conn);
         }
+        mysqli_stmt_close($stmt);
         }
         
     ?>

@@ -12,13 +12,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idade = $_POST['idade'];
     $cliente = $_POST['id_cliente'];
 
-    $sql = "INSERT INTO animais (nome, tipo, raca, idade, id_cliente) VALUES ('$nome', '$tipo', '$raca', '$idade', '$cliente')";
+    $sql = "INSERT INTO animais (nome, tipo, raca, idade, id_cliente) VALUES (?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ssss", $nome, $tipo, $raca, $idade, $cliente);
 
-    if (mysqli_query($conn, $sql)) {
+    if (mysqli_stmt_execute($stmt)) {
         echo "Animal cadastrado com sucesso!";
         } else {
             echo "Erro ao cadastrar animal: " . mysqli_error($conn);
             }
+            mysqli_stmt_close($stmt);
 }
 
     ?>
@@ -46,16 +49,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <input type="number" name="idade" id="idade" required>
 <br>
   <label for="id_cliente">Cliente:</label>
-        <select name="id_cliente" id="id_cliente">
-            <option value="">Selecione um Cliente</option>
-            <?php
-           while ($cliente = mysqli_fetch_assoc($resultado)) {
+    <select name="id_cliente" id="id_cliente" required>
+
+        <option value="">Selecione um Cliente</option>
+
+        <?php
+        while ($cliente = mysqli_fetch_assoc($resultado)) {
             echo "<option value='{$cliente['id']}'>{$cliente['nome']}</option>";
         }
-            ?>
-        </select>
-        <br>
-<button type="submit">Enviar</button>
+        ?>
+
+    </select>
+
+    <br>
+
+    <button type="submit">Cadastrar Animal</button>
 
 </form>
 </body>
